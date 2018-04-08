@@ -18,11 +18,17 @@ MongoClient.connect('mongodb://awu:save%24800K@ds237669.mlab.com:37669/quotes', 
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html')
+//	res.sendFile(__dirname + '/index.html')
+	db.collection('quotes').find().toArray((err, results) => {
+		if (err) return console.log(err)
+
+		res.render('index.ejs', {quotes: results})
+	})
 })
 
 app.post('/quotes', (req, res) => {
-	db.collection('quotes').save(req.body, (err, result) => {
+	db.collection('quotes').save(req.body, (err, results) => {
+
 		if (err) return console.log(err)
 
 		console.log('Saved to Database')
