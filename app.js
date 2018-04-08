@@ -5,7 +5,7 @@ const app = express();
 
 var db
 
-MongoClient.connect('mongodb://awu:save%24800K@ds237669.mlab.com:37669/quotes', (err, client) => {
+MongoClient.connect('mongodb://dbuser:Pass0000@ds237669.mlab.com:37669/quotes', (err, client) => {
 	if (err) return console.log(err)
 
 	db = client.db('quotes')
